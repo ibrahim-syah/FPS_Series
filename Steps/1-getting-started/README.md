@@ -41,3 +41,7 @@ You need to set these sweet spot for montage blend in/out:
 
 
 I think this blend in/out values are used for smooth transition between one montage to the other.
+
+Next, create a folder called Skeletons in MyStuff and within it, import the SK_Camera.fbx asset. This custom skeleton will be used for procedural camera animation later on. Ignore any warning that says the bone size is too small.
+
+Open the imported skeleton asset and set the Character > Bones > All Hierarchy.
