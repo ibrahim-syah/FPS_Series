@@ -22,3 +22,22 @@ Open all the imported animation and change each of their rate scale according to
 - FP_Reload: 3.5
 - FP_Stow: 4.0
 
+Rate scale is pretty straightforward, it tweaks the playback rate of the animation.
+
+Next, create an animation montage from all one-shot animations (everything except FP_Idle). For each of these montage, set each one to play in the "Arms" montage slot. Don't worry if you see the animation T-posing, you can save it, preview other animation, and go back to the montage and it'll work again. I don't know why it T-pose in the first place tho.
+
+You need to set these sweet spot for montage blend in/out:
+
+| Montage      | Blend in     | Blend out |
+|--------------|-----------|------------|
+| FP_Equip_Montage | 0.00  | 0.25        |
+| FP_Fire_Montage      | 0.01  | 0.40       |
+| FP_Grenade_Montage | 0.10 | 0.25 |
+| FP_Inspect_Montage | 0.25 | 0.25 |
+| FP_Inspect_2_Montage | 0.25 | 0.25 |
+| FP_Melee_Montage | 0.10 | 0.25 |
+| FP_Reload_Montage | 0.10 | 0.25 |
+| FP_Stow_Montage | 0.25 | 0.00 |
+
+
+I think this blend in/out values are used for smooth transition between one montage to the other.
