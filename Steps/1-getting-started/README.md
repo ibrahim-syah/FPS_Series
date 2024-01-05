@@ -8,7 +8,7 @@ If you try in PIE you will notice that you can't turn left or right, this is bec
 
 ## Animation Setup
 
-Create "MyStuff" folder in "Content" and also "Animations" folder within "MyStuff". Then just drag and drop the contents of "FirstPerson" folder into the "Animations" folder in the content browser. When prompted, select the SK_Mannequin_Arms_Skeleton as the skeleton, then click "Import All".
+Create "MyStuff" folder in "Content" and also "Animations" folder within "MyStuff". Then just drag and drop the contents of "FirstPerson" folder into the "Animations" folder in the content browser. When prompted, select the SK_Mannequin_Arms_Skeleton as the skeleton, then click "Import All". If you're using UE5, you might find that the skeleton doesn't translate well, especially with the fingers, so I'd advise you to export the UE4's skeleton and then import it into UE5 and use that instead.
 
 Open all the imported animation and change each of their rate scale according to the following values:
 
@@ -44,4 +44,14 @@ I think this blend in/out values are used for smooth transition between one mont
 
 Next, create a folder called Skeletons in MyStuff and within it, import the SK_Camera.fbx asset. This custom skeleton will be used for procedural camera animation later on. Ignore any warning that says the bone size is too small.
 
-Open the imported skeleton asset and set the Character > Bones > All Hierarchy.
+Open the imported skeleton asset and set the Character > Bones > All Hierarchy. I don't know what this does, couldn't find it in the docs.
+
+Next up, open Content/FirstPerson/Animations/FirstPerson_AnimBP and open the AnimGraph to delete the included "New State Machine". Then from the Asset Browser drag and drop the FP_Idle into AnimGraph and use it as the new base pose. If you're using UE5, don't forget to check the "Loop Animation" checkmark if it wasn't checked already. Also ensure that you are only replacing the state machine, keep the slot 'Arms' node before the OutputPose node.
+
+Now head over to Content/FirstPersonBP/Blueprints and open FirstPersonCharacter blueprint. If you try to compile it, you will be met with errors because we deleted some input mappings.
+
+Starting off, switch to the construction script (you should be able to just switch tab or open it under the My Blueprint tab on the left) and delete the "Attach" function. I think we deleted this because we don't have to attach the gun at construct time, we can just define them directly into the character component, I think.
+
+Next, delete all VR-related logic from the event Graph, and the collection of nodes grouped within "Stick input" comment. Also we need to change InputAxis Turn to InputAxis LookRight.
+
+Continue after finishing the tut.
